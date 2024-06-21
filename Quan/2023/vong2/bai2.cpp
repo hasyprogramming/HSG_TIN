@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iomanip>
+#include <map>
 
 using namespace std;
 
@@ -23,40 +24,26 @@ ll comp(pair<ll, ll> a, pair<ll, ll> b){
   if (a.first == b.first) return a.second > b.second;
   return a.first > b.first;
 }
-vector<bool> p (maxn+1, true);
-vector<ll> prime;
-void build(){
-  for(int i = 2; i*i <= maxn; i++){
-    if (p[i]){
-      for(int j = i*i; j <= maxn; j+=i){
-        p[j] = false;
-      }
-    }
-  }
-  for(int i = 2; i < maxn; i++){
-    if (p[i]) prime.push_back(i);
-  }
-}
-vector<ll> op;
+ll n;
+map<ll, ll> a;
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
   // freopen("INP.txt", "r", stdin);;
   // freopen("OUT.txt", "w", stdout);
-  build();
-  ll cnt = 0;
-  while (prime[cnt]*prime[cnt]*9 <= 1e12){
-    op.push_back(prime[cnt]*prime[cnt]*9);
-    cnt++;
+  cin >> n;
+  for(int i = 0; i < n; i++){
+    ll num;
+    cin >> num;
+    if (a.find(num) != a.end())a[num]++;
+    else a[num] = 1;
   }
-  ll t;
-  cin >> t;
-  while (t--){
-    ll a, b;
-    cin >> a >> b;
-    ll l = lower_bound(op.begin(), op.end(), a)-op.begin();
-    ll r = upper_bound(op.begin(), op.end(), b)-op.begin();
-    cout << r-l << endl;
+  ll ans = 0;
+  for(auto i = a.begin(); i != a.end(); i++){
+    if (i->second > 1){
+      ans+=i->second;
+    }
   }
+  cout << ans << endl;
 }
