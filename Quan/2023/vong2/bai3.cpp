@@ -21,6 +21,13 @@ string cop(ll l, ll r){
   }
   return m;
 }
+string rcop(ll l, ll r){
+  string m = "";
+  for(int i = r; i >= l; i--){
+    m += s[i];
+  }
+  return m;
+}
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
@@ -28,12 +35,12 @@ int main(){
   cin >> s;
   ll ans = 0;
   for(int i = 0; i < s.size(); i++){
-    for(int r = 0; 2*r < s.size(); r++){
+    for(int r = 0; r < s.size()-i; r++){
       string a, b;
       a = cop(i, i+r);
-      b = cop(i+r+1, i+r+1+r);
+      b = rcop(i, i+r);
       if (a==b){
-        ans = max(ans, (ll)((r+1)*2));
+        ans = max(ans, (ll)r+1);
       }
     }
   }
