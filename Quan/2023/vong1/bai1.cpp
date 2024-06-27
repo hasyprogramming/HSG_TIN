@@ -22,7 +22,6 @@ ll comp(pair<ll, ll> a, pair<ll, ll> b){
   if (a.first == b.first) return a.second > b.second;
   return a.first > b.first;
 }
-
 ll a, b, c, d;
 int main(){
   ios_base::sync_with_stdio(0);
@@ -31,6 +30,7 @@ int main(){
   // freopen("INP.txt", "r", stdin);;
   // freopen("OUT.txt", "w", stdout);
   cin >> a >> b >> c >> d;
+
   if (a == c){
     cout << a * (b+d);
   } else if (a == d){
