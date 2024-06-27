@@ -27,10 +27,9 @@ int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  // freopen("INP.txt", "r", stdin);;
+  // freopen("INP.txt", "r", stdin);
   // freopen("OUT.txt", "w", stdout);
   cin >> a >> b >> c >> d;
-
   if (a == c){
     cout << a * (b+d);
   } else if (a == d){
