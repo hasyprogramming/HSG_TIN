@@ -4,10 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iomanip>
-
 using namespace std;
-
-
 #define ll long long
 #define ld long double
 #define sza(x) k((long long) x.size());
@@ -23,7 +20,7 @@ ll comp(pair<ll, ll> a, pair<ll, ll> b){
   if (a.first == b.first) return a.second > b.second;
   return a.first > b.first;
 }
-vector<bool> p (maxn+1, true);
+vector<bool> p(maxn+1, true);
 vector<ll> prime;
 void build(){
   for(int i = 2; i*i <= maxn; i++){
@@ -47,6 +44,10 @@ int main(){
   build();
   ll cnt = 0;
   while (prime[cnt]*prime[cnt]*9 <= 1e12){
+    op.push_back(prime[cnt]*prime[cnt]*9);
+    cnt++;
+  }
+  while (prime[cnt]*prime[cnt]*9 <= 1e9){
     op.push_back(prime[cnt]*prime[cnt]*9);
     cnt++;
   }
