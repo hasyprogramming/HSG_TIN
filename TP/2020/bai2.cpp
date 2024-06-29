@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <vector>
+#include <cmath>
 using namespace std;
 #define ll long long
 #define ld long double
@@ -22,31 +23,35 @@ ll comp(pair<ll, ll> a,  pair<ll, ll> b){
   if (a.first == b.first) return a.second > b.second;
   return a.first > b.first;
 }
-ll t;
+string s;
+vector<ll> num;
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  cin >> t;
-  while (t--){
-    ll a;
-    cin >> a;
-    if (a >= 60){
-      a-=60;
-      cout << "09:";
-      if (a >= 10){
-        cout << a;
-      } else{
-        cout << "0" << a;
-      }
+  cin >> s;
+  ll cur=0, digit=0;
+  s+="a";
+  for(int i =0; i < s.length();i++){
+    ll c = s[i]-48;
+    if (c >= 0 && c <= 9){
+        if (cur == 0){
+            cur = c;
+        } else{
+            cur*=10;
+            cur+=c;
+        }
+        digit++;
     } else{
-      cout << "08:";
-      if (a >= 10){
-        cout << a;
-      } else{
-        cout << "0" << a;
-      }
+        num.push_back(cur);
+        cur = 0;
+        digit=0;
     }
-    cout << endl;
   }
+  ll ans = 0;
+  sort(num.begin(), num.end());
+  for(int i= 0; i < num.size()-1; i++){
+    if (num[i]!=num[i+1])ans++;
+  }
+  cout << ans << endl;
 }
