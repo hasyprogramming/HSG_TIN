@@ -21,35 +21,30 @@ ll gcd(ll a, ll b){
 }
 ll comp(pair<ll, ll> a,  pair<ll, ll> b){
   if (a.first == b.first) return a.second > b.second;
-  return a.first > b.first;
+  return a.first < b.first;
 }
-string s;
-vector<ll> num;
+ll n;
+ll Mi = inf, Ma = -inf;
+ll ans = 0;
+ll cur = 0;
+vector<pair<ll, ll>> p;
 int main(){
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
-  cin >> s;
-  ll cur=0, digit=0;
-  s+="a";
-  for(int i = 0; i < s.length(); i++){
-    ll c = s[i]-48;
-    if (c >= 0 && c <= 9){
-        if (cur == 0){
-            cur = c;
-        } else{
-            cur*=10;
-            cur+=c;
-        }
-        digit++;
-    } else{
-        num.push_back(cur);
-        cur = 0;
-        digit=0;
-    }
+  cin >> n;
+  for(int i = 0; i< n;i++){
+    ll a, b;
+    cin >> a >> b;
+    p.push_back({a, b});
   }
-  ll ans = 0;
-  sort(num.begin(), num.end());
-  for(int i= 0; i < num.size()-1; i++){if (num[i]!=num[i+1])ans++;}
+  sort(p.begin(), p.end(), comp);
+  for(int i = 0; i < n; i++){
+    Mi = min(Mi, p[i].first);
+    Ma = max(Ma, p[i].first);
+    cur += p[i].second;
+    ans = max(ans, cur-(Ma-Mi));
+  }
   cout << ans << endl;
 }
+
