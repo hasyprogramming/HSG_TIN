@@ -19,7 +19,6 @@ ll gcd(ll a, ll b){
   }
   return gcd(b, a%b);
 }
-
 ll comp(pair<ll, ll> a, pair<ll, ll> b){
   if (a.first == b.first) return a.second > b.second;
   return a.first > b.first;
@@ -60,7 +59,7 @@ int main(){
   cin >> m >> n;
   m*=n;
   n*=n;
-  factor = fac(n);
+  vector<ll> factor = fac(n);
   sort(factor.begin(), factor.end(), greater<int>());
   ll cnt = 0;
   while (m > 0){
